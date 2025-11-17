@@ -21,14 +21,11 @@
   "author": "Morgan Wambulwa",
   "license": "ISC",
   "dependencies": {
-    "compression": "^1.8.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.0.3",
-    "morgan": "^1.10.1"
+    "mongoose": "^8.0.3"
   },
   "devDependencies": {
     "jest": "^29.7.0",
