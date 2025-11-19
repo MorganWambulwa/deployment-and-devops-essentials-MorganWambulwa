@@ -1,7 +1,6 @@
-
+// server/src/routes/bugRoutes.js (Revised)
 const express = require('express');
 const router = express.Router();
-
 const bugController = require('../controllers/bugController');
 
 router.get('/', bugController.getBugs);

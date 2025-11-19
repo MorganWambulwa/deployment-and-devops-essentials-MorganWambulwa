@@ -1,26 +1,24 @@
-// app.js
-import express from 'express';
-import cors from 'cors';
-import bugRoutes from './routes/bugRoutes.js';
-import { errorHandler } from './middleware/errorHandler.js';
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+const helmet = require('helmet');
+const compression = require('compression');
+
+const bugRoutes = require('./routes/bugRoutes');
+const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 
-const allowedOrigin = process.env.CLIENT_URL || 'http://localhost:3000'; 
-
-const corsOptions = {
-  // Use the specific client URL when in production, or localhost for development
-  origin: allowedOrigin, 
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-};
-
-app.use(cors(corsOptions)); 
-
+app.use(cors());
+app.use(helmet());
+app.use(compression());
+app.use(morgan('combined'));
 app.use(express.json());
 
 app.use('/api/bugs', bugRoutes);
 
+app.get('/health', (req, res) => res.send('OK'));
+
 app.use(errorHandler);
 
-export default app;
+module.exports = app;

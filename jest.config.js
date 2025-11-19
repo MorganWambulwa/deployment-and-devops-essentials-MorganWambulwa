@@ -15,7 +15,7 @@ module.exports = {
         '!**/node_modules/**',
       ],
     },
-
+    
     {
       displayName: 'client',
       testEnvironment: 'jsdom',

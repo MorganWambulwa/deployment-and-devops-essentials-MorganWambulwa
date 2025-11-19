@@ -27,3 +27,7 @@ body {
   background-color: #f5f5dc;
   color: #4e342e;
 }
+.btn-secondary:hover {
+  background-color: #e0e0d1;
+  color: #4e342e;
+}

@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   return (
     <div>
-      <Navbar /> {/* Only here */}
+      <Navbar />
       <Dashboard />
       <ToastContainer />
     </div>

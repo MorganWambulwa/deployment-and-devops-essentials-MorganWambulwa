@@ -41,7 +41,6 @@ afterAll(async () => {
   await mongoServer.stop();
 });
 
-
 afterEach(async () => {
   const collections = mongoose.connection.collections;
   for (const key in collections) {
@@ -207,7 +206,6 @@ describe('PUT /api/posts/:id', () => {
   });
 
   it('should return 403 if not the author', async () => {
-    // Create another user
     const anotherUser = await User.create({
       username: 'anotheruser',
       email: 'another@example.com',
@@ -236,7 +234,6 @@ describe('DELETE /api/posts/:id', () => {
 
     expect(res.status).toBe(200);
     
-    // Verify post is deleted
     const deletedPost = await Post.findById(postId);
     expect(deletedPost).toBeNull();
   });

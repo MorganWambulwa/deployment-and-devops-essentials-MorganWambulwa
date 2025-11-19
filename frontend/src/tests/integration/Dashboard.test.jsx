@@ -52,18 +52,15 @@ const server = setupServer(
   })
 );
 
-
 beforeAll(() => server.listen());
-
 afterEach(() => server.resetHandlers());
-
 afterAll(() => server.close());
 
 describe('Dashboard Integration', () => {
   test('renders list of bugs', async () => {
     render(<Dashboard />);
     
-
+    // Wait for API data to load
     await waitFor(() => {
       expect(screen.getByText(/Test Bug 1/i)).toBeInTheDocument();
       expect(screen.getByText(/Test Bug 2/i)).toBeInTheDocument();

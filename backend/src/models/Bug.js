@@ -2,7 +2,6 @@
 import mongoose from 'mongoose';
 
 const bugSchema = new mongoose.Schema({
-    // Define your bug fields here (e.g., title, description, status)
     title: { type: String, required: true },
     description: { type: String },
     status: { type: String, enum: ['Open', 'In Progress', 'Closed'], default: 'Open' },
@@ -11,4 +10,4 @@ const bugSchema = new mongoose.Schema({
 });
 
 const Bug = mongoose.model('Bug', bugSchema);
-export default Bug; // Export model as default
+export default Bug;

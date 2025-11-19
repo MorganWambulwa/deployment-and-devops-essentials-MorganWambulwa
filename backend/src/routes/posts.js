@@ -1,3 +1,4 @@
+// server/src/routes/posts.js
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/postsController');
