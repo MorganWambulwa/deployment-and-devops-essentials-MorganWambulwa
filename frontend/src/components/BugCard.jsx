@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const BugCard = ({ bug, onEdit, onDelete }) => (
   <div className="card mb-3" style={{ backgroundColor: '#fff8f0', borderColor: '#d7ccc8' }}>
@@ -11,5 +12,17 @@ const BugCard = ({ bug, onEdit, onDelete }) => (
     </div>
   </div>
 );
+
+BugCard.propTypes = {
+  bug: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    priority: PropTypes.string.isRequired,
+  }).isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
 
 export default BugCard;
