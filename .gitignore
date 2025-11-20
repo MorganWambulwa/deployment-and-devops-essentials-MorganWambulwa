@@ -5,4 +5,5 @@ frontend/.env
 backend/.env
 
 frontend/build/
-
+backend/.env.production
+frontend/.env.production
