@@ -1,8 +1,18 @@
-// server/src/middleware/errorHandler.js
 function errorHandler(err, req, res, next) {
   if (res.headersSent) return next(err);
+
   const status = err.status || 500;
-  res.status(status).json({ message: err.message || 'Server Error' });
+
+  const response = {
+    success: false,
+    message:
+      process.env.NODE_ENV === 'production'
+        ? 'Internal Server Error'
+        : err.message,
+    stack: process.env.NODE_ENV === 'production' ? null : err.stack,
+  };
+
+  res.status(status).json(response);
 }
 
 module.exports = { errorHandler };
