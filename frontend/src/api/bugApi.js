@@ -9,7 +9,7 @@ export const fetchBugs = async () => {
   } catch (err) {
     console.error('Fetch bugs error:', err.response ? err.response.data : err);
     throw err;
-  }
+  } 
 };
 export const addBug = async (bug) => {
   try {
