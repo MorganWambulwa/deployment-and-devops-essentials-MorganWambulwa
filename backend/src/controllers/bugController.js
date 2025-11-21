@@ -1,41 +1,38 @@
-import Bug from "../models/Bug.js";
-import { validateBug } from "../utils/validateBug.js";
+import Bug from '../models/Bug.js';
 
-export const getBugs = async (req, res, next) => {
+export const getBugs = async (req, res) => {
   try {
     const bugs = await Bug.find();
-    res.json({ success: true, data: bugs });
+    res.json({ data: bugs });
   } catch (err) {
-    next(err);
+    res.status(500).json({ message: err.message });
   }
 };
 
-export const createBug = async (req, res, next) => {
+export const addBug = async (req, res) => {
   try {
-    validateBug(req.body);
-    const bug = await Bug.create(req.body);
-    res.status(201).json({ success: true, data: bug });
+    const newBug = new Bug(req.body);
+    await newBug.save();
+    res.status(201).json({ data: newBug });
   } catch (err) {
-    next(err);
+    res.status(400).json({ message: err.message });
   }
 };
 
-export const updateBug = async (req, res, next) => {
+export const updateBug = async (req, res) => {
   try {
-    const updated = await Bug.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!updated) return res.status(404).json({ success: false, message: "Bug not found" });
-    res.json({ success: true, data: updated });
+    const updatedBug = await Bug.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json({ data: updatedBug });
   } catch (err) {
-    next(err);
+    res.status(400).json({ message: err.message });
   }
 };
 
-export const deleteBug = async (req, res, next) => {
+export const deleteBug = async (req, res) => {
   try {
-    const deleted = await Bug.findByIdAndDelete(req.params.id);
-    if (!deleted) return res.status(404).json({ success: false, message: "Bug not found" });
+    await Bug.findByIdAndDelete(req.params.id);
     res.status(204).send();
   } catch (err) {
-    next(err);
+    res.status(400).json({ message: err.message });
   }
 };

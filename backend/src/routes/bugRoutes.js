@@ -1,14 +1,11 @@
-// server/src/routes/bugRoutes.js (Revised)
-const express = require('express');
+import express from 'express';
+import { getBugs, addBug, updateBug, deleteBug } from '../controllers/bugController.js';
+
 const router = express.Router();
-const bugController = require('../controllers/bugController');
 
-router.get('/', bugController.getBugs);
+router.get('/', getBugs);
+router.post('/', addBug);
+router.put('/:id', updateBug);
+router.delete('/:id', deleteBug);
 
-router.post('/', bugController.createBug);
-
-router.put('/:id', bugController.updateBug);
-
-router.delete('/:id', bugController.deleteBug);
-
-module.exports = router;
+export default router;

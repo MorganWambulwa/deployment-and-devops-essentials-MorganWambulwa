@@ -1,13 +1,17 @@
-const express = require('express');
-const cors = require('cors');
-const bugRoutes = require('./routes/bugRoutes');
+import express from 'express';
+import cors from 'cors';
+import bugRoutes from './routes/bugRoutes.js';
 
 const app = express();
 
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://bugtracker-frontend-pq7x7ksh5-morgan-wambulwas-projects.vercel.app'
+];
 
 app.use(cors({
-  origin: CLIENT_URL,
+  origin: allowedOrigins,
+  credentials: true
 }));
 
 app.use(express.json());
@@ -18,4 +22,4 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-module.exports = app;
+export default app;
