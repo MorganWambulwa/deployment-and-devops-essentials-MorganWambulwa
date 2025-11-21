@@ -11,7 +11,6 @@ export const fetchBugs = async () => {
     throw err;
   }
 };
-
 export const addBug = async (bug) => {
   try {
     const res = await axios.post(`${API_URL}/api/bugs`, bug, { withCredentials: true });
