@@ -6,7 +6,7 @@ const app = express();
 
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://bugtracker-frontend-1i6l9kyrg-morgan-wambulwas-projects.vercel.app'
+  'https://bugtracker-frontend-pq7x7ksh5-morgan-wambulwas-projects.vercel.app'
 ];
 
 app.use(cors({
