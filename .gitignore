@@ -1,6 +1,9 @@
+# Node modules
 node_modules/
 
 frontend/.env
 backend/.env
-frontend/build
+
+frontend/build/
+backend/.env.production
 frontend/.env.production
