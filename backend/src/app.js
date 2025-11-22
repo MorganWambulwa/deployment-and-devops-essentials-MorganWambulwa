@@ -6,13 +6,26 @@ import { errorHandler } from './middleware/errorHandler.js';
 const app = express();
 
 const allowedOrigins = [
-  process.env.CLIENT_URL || 'http://localhost:3000',
-  'https://deployment-bugtracker-frontend-j0skbecpl.vercel.app'
+  process.env.CLIENT_URL,
+  'http://localhost:3000'
 ];
 
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: function (origin, callback) {
+
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      if (/\.vercel\.app$/.test(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error('Not allowed by CORS: ' + origin));
+    },
     credentials: true,
   })
 );
