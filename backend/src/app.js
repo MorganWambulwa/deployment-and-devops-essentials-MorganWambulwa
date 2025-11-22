@@ -6,7 +6,7 @@ import { errorHandler } from './middleware/errorHandler.js';
 const app = express();
 
 const allowedOrigins = [
-  process.env.CLIENT_URL,
+  ...(process.env.CLIENT_URL ? process.env.CLIENT_URL.split(',').map(url => url.trim()) : []),
   'http://localhost:3000'
 ];
 
